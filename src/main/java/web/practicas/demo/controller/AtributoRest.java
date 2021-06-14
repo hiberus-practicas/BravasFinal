@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.practicas.demo.model.dto.AtributoDTO;
 import web.practicas.demo.model.entidades.Atributo;
 import web.practicas.demo.service.AtributoService;
 
@@ -67,9 +68,11 @@ public class AtributoRest {
         }
     }
 
-    @GetMapping("/busqueda/{atributo}/{valor}")
-    public ResponseEntity<?> buscarPorAtributoValor(@PathVariable String atributo,@PathVariable String valor) throws  Exception{
+    @GetMapping("/busqueda/{atributo}/")
+    public ResponseEntity<?> buscarPorAtributoValor(@PathVariable(value ="atributo" ) String atributo, @RequestBody AtributoDTO valordto) throws  Exception{
         try{
+            String valor=valordto.getValor();
+
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorAtributoValor(atributo,valor));
 
         }catch (Exception e){

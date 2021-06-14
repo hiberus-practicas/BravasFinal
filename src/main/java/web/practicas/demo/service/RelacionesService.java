@@ -12,7 +12,9 @@ import web.practicas.demo.repository.IAtributoRepository;
 import web.practicas.demo.repository.IProyectoRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 @Service
@@ -23,6 +25,7 @@ public class RelacionesService {
     IProyectoRepository repositoryProyecto;
     @Autowired
     IAtributoRepository repositoryAtributo;
+
 
     public List<Atributo_Proyecto> listall() throws Exception {
         try {
@@ -67,7 +70,6 @@ public class RelacionesService {
         }
     }
 
-
     public Atributo_Proyecto delete(Long proyecto, String atributo) throws Exception {
         Key clave = new Key(repositoryAtributo.getById(atributo), repositoryProyecto.getById(proyecto));
         Atributo_Proyecto check = repositoryRelaciones.getById(clave);
@@ -95,4 +97,30 @@ public class RelacionesService {
 
     }
 
+    public List<Atributo_Proyecto> consultor(Atributo atributo, String valor) {
+        String nombreAtributo = atributo.getNombreAtributo();
+        String tipoDato = atributo.getTipoDato().toLowerCase();
+        switch (tipoDato) {
+            case "string":
+                String valorFinalString = valor;
+                return repositoryRelaciones.BusquedaStringAtributoValor(nombreAtributo, valorFinalString);
+
+            case "integer":
+                Integer valorFinalInteger = Integer.parseInt(valor);
+                return repositoryRelaciones.BusquedaNumeroAtributoValor(nombreAtributo, valorFinalInteger);
+
+            case "boolean":
+                Integer valorFinalBoolean = Integer.parseInt(valor);
+                return repositoryRelaciones.BusquedaNumeroAtributoValor(nombreAtributo, valorFinalBoolean);
+
+            case "date":
+                Date valorFinalDate = new Date(valor);
+                return repositoryRelaciones.BusquedaDateAtributoValor(nombreAtributo, valorFinalDate);
+
+
+        }
+        return null;
+
+
+    }
 }

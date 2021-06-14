@@ -3,10 +3,12 @@ package web.practicas.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.practicas.demo.model.entidades.Atributo;
+import web.practicas.demo.model.entidades.Atributo_Proyecto;
 import web.practicas.demo.model.entidades.Proyecto;
 import web.practicas.demo.repository.IAtributoProyectoRepository;
 import web.practicas.demo.repository.IAtributoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ public class AtributoService {
     protected IAtributoRepository repository;
     @Autowired
     protected IAtributoProyectoRepository repositoryRelaciones;
+    @Autowired
+    protected RelacionesService servicioRelaciones;
 
     public AtributoService(IAtributoRepository repository) {
         this.repository = repository;
@@ -65,19 +69,20 @@ public class AtributoService {
     }
 
     public List<Proyecto> buscarPorAtributoValor(String atributo, String valor) throws Exception {
-        try{
-            List<Proyecto>resultado;
-            Atributo atributobuscado=repository.getById(atributo);
+        try {
+            System.out.println("va");
+            Atributo atributobuscado = repository.getById(atributo);
+            List<Atributo_Proyecto> relacionescumplefiltro = servicioRelaciones.consultor(atributobuscado, valor);
+            System.out.println("hace consulta");
+            List<Proyecto> devolver = new ArrayList<>();
+            System.out.println("sigue");
+
+            System.out.println("meto proyectos en array");
+
+            return devolver;
 
 
-
-
-
-
-
-            return resultado;
-
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
 
