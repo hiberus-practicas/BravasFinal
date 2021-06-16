@@ -9,6 +9,7 @@ import web.practicas.demo.repository.IAtributoProyectoRepository;
 import web.practicas.demo.repository.IAtributoRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,8 +62,9 @@ public class AtributoService {
 
     public Atributo delete(String id) throws Exception {
         try {
+           Atributo devolver= repository.findById(id).get();
             repository.deleteById(id);
-            return repository.findById(id).get();
+            return devolver;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -77,12 +79,33 @@ public class AtributoService {
             List<Proyecto> devolver = new ArrayList<>();
             System.out.println("sigue");
 
-            System.out.println("meto proyectos en array");
+            for(Atributo_Proyecto elemento:relacionescumplefiltro){
+                devolver.add(elemento.getMykey().getProyecto());
+            }
 
             return devolver;
 
 
         } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+    public List<Proyecto> buscarProyectosAcotadoFechas(String limiteinferior,String limiteosuperior,String nombreatributo) throws Exception{
+        try{
+            List<Proyecto>devolver=new ArrayList();
+
+
+            List<Atributo_Proyecto>filtrado=servicioRelaciones.buscarporfecha(limiteinferior,limiteosuperior,nombreatributo);
+            System.out.println(filtrado.size());
+            System.out.println("hago busqueda");
+            for(Atributo_Proyecto elemento:filtrado){
+                devolver.add(elemento.getMykey().getProyecto());
+            }
+            System.out.println("devuelvo solo proyectos");
+            return devolver;
+
+        }catch (Exception e){
             throw new Exception(e.getMessage());
         }
 

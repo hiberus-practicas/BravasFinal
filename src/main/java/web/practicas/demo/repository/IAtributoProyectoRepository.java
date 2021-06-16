@@ -11,15 +11,16 @@ import java.util.List;
 
 public interface IAtributoProyectoRepository extends BaseRepository<Atributo_Proyecto, Key> {
     @Query(value = "SELECT * FROM atributo_proyectos p   where p.value_string LIKE %:filtro%",nativeQuery = true)
-    List<Atributo_Proyecto> BusquedaSemantica(String filtro);
+    List<Atributo_Proyecto> busquedaSemantica(String filtro);
 
     @Query(value = "SELECT * FROM atributo_proyectos p   where p.value_string LIKE %:valor% AND p.nombre_atributo =:nombreAtributo",nativeQuery = true)
-    List<Atributo_Proyecto> BusquedaStringAtributoValor(String nombreAtributo, String valor);
+    List<Atributo_Proyecto> busquedaStringAtributoValor(String nombreAtributo, String valor);
 
     @Query(value = "SELECT * FROM atributo_proyectos p   where p.value_numero = :valor AND p.nombre_atributo =:nombreAtributo",nativeQuery = true)
-    List<Atributo_Proyecto> BusquedaNumeroAtributoValor(String nombreAtributo, Integer valor);
+    List<Atributo_Proyecto> busquedaNumeroAtributoValor(String nombreAtributo, Integer valor);
 
     @Query(value = "SELECT * FROM atributo_proyectos p   where p.value_fecha = :valor AND p.nombre_atributo =:nombreAtributo",nativeQuery = true)
-    List<Atributo_Proyecto> BusquedaDateAtributoValor(String nombreAtributo, Date valor);
-
+    List<Atributo_Proyecto> busquedaDateAtributoValor(String nombreAtributo, Date valor);
+    @Query(value = "SELECT * FROM atributo_proyectos p where p.value_fecha BETWEEN :valorinferior AND :valorsuperior AND p.nombre_atributo =:nombreatributo" ,nativeQuery = true)
+    List<Atributo_Proyecto> busquedaAcotadaporDate(String valorinferior,String valorsuperior,String nombreatributo);
 }

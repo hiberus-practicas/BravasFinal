@@ -5,8 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.practicas.demo.model.dto.AtributoDTO;
+import web.practicas.demo.model.dto.FechasDTO;
 import web.practicas.demo.model.entidades.Atributo;
 import web.practicas.demo.service.AtributoService;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -15,9 +19,7 @@ public class AtributoRest {
     @Autowired
     AtributoService service;
 
-    public AtributoRest(AtributoService service) {
-        this.service = service;
-    }
+
 
     @GetMapping("")
     public ResponseEntity<?> listall() throws Exception {
@@ -68,18 +70,33 @@ public class AtributoRest {
         }
     }
 
-    @GetMapping("/busqueda/{atributo}/")
-    public ResponseEntity<?> buscarPorAtributoValor(@PathVariable(value ="atributo" ) String atributo, @RequestBody AtributoDTO valordto) throws  Exception{
-        try{
-            String valor=valordto.getValor();
+    @GetMapping("/busqueda/")
+    public ResponseEntity<?> buscarPorAtributoValor( @RequestBody AtributoDTO valordto) throws Exception {
+        try {
+            String atributo=valordto.getAtributo();
+            String valor = valordto.getValor();
 
-            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorAtributoValor(atributo,valor));
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorAtributoValor(atributo, valor));
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'Error':'error en la peticion'}");
         }
 
     }
+
+    @GetMapping("/busqueda/fechas/")
+    public ResponseEntity<?> busquedaacotadafechas(@RequestBody FechasDTO limites) throws Exception {
+        try {
+
+            String nombreatributo = limites.getNombreatributo();
+
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarProyectosAcotadoFechas(limites.getLimiteinferior(), limites.getLimitesuperior(), nombreatributo));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'Error':'error en la peticion'}");
+        }
+
+    }
+
 
 }

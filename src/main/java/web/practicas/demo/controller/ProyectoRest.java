@@ -5,9 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.practicas.demo.controller.base.BaseControllerImplementation;
+import web.practicas.demo.model.dto.ProyectoAddDTO;
 import web.practicas.demo.model.dto.ProyectoAtributoDTO;
+import web.practicas.demo.model.dto.ProyectoDTO;
+import web.practicas.demo.model.entidades.Atributo;
 import web.practicas.demo.model.entidades.Proyecto;
 import web.practicas.demo.service.ProyectoService;
+import web.practicas.demo.service.RelacionesService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -16,9 +20,33 @@ public class ProyectoRest extends BaseControllerImplementation<Proyecto, Proyect
     @Autowired
     ProyectoService service;
 
+
     public ProyectoRest(ProyectoService service) {
         super(service);
         this.service = service;
+    }
+
+    @PostMapping("/completo")
+    public ResponseEntity<?> add(@RequestBody ProyectoAddDTO entidad) throws Exception {
+    try{
+
+        Proyecto proyecto=service.add(new Proyecto(entidad.getEquipo(),entidad.getNombre()));
+
+        for (ProyectoAtributoDTO elemento:entidad.getAtributos()) {
+            System.out.println(proyecto.getId());
+            System.out.println(elemento.getNombre());
+            System.out.println(elemento.getValor());
+            System.out.println(elemento.getIdProyecto());
+
+            service.addAtributoProyecto(new ProyectoAtributoDTO(proyecto.getId(),elemento.getNombre(),elemento.getValor()));
+
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("{'status':`OK`}");
+
+    }catch (Exception e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error':'peticion incorrecta'}");
+    }
+
     }
 
     @PostMapping("/atributes")

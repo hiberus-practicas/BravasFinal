@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.practicas.demo.model.dto.ProyectoAtributoDTO;
 import web.practicas.demo.model.entidades.Proyecto;
 import web.practicas.demo.service.RelacionesService;
 
@@ -42,11 +43,12 @@ public class RelacionesController {
         }
     }
 
-    @DeleteMapping("{proyecto}/{atributo}")
-    public ResponseEntity<?> delete(@PathVariable Long proyecto, @PathVariable String atributo) throws Exception {
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody ProyectoAtributoDTO relacion) throws Exception {
         try {
 
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(proyecto, atributo));
+
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(relacion.getIdProyecto(), relacion.getNombre()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error':'peticion incorrecta'}");
         }

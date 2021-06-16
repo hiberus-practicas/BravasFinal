@@ -28,8 +28,8 @@ public class Proyecto extends Base implements Serializable {
 
 
 
-    public Proyecto(Long Id, String nombre, String equipo, List<Atributo_Proyecto> relaciones) {
-        super(Id);
+    public Proyecto(String nombre, String equipo) {
+        super();
         this.nombre = nombre;
         this.equipo = equipo;
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class Atributo_Proyecto implements Serializable {
     @Column(name = "value_string")
     String valueString;
     @Column(name = "value_fecha")
+    @Temporal(TemporalType.DATE)
     Date valueFecha;
 
     @EmbeddedId
