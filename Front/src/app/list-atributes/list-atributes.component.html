@@ -1,0 +1,7 @@
+<div *ngFor="let atributo of atributes">
+    <article>
+        <h3>{{atributo.nombreAtributo}} <small>{{atributo.tipoDato}}</small></h3>
+        <p>{{atributo.descripcion}}</p>
+        <button (click)="deleteAtribute(atributo.nombreAtributo)">Eliminar atributo</button>
+    </article>
+</div>

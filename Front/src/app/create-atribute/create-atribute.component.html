@@ -1,0 +1,10 @@
+<input type="text" placeholder="Nombre del atributo" [(ngModel)]="nombreAtributo"><br>
+<select name="tipoDato" id="" [(ngModel)]="tipoDato">
+    <option hidden value="null">Selecciona el tipo de dato</option>
+    <option value="string">Cadena de texto</option>
+    <option value="integer">Numerico</option>
+    <option value="boolean">Verdadero/Falso</option>
+    <option value="date">Fecha</option>
+</select><br>
+<input type="text" placeholder="Descripcion del atributo" [(ngModel)]="descripcion"><br>
+<button (click)="createAtribute()">Crear atributo</button><br>

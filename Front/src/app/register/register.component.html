@@ -1,0 +1,49 @@
+<div>
+<small *nfIf='emailError!=""' class="alert alert-danger">{{emailError}}</small>
+<small  *nfIf='nombreError!=""' class="alert alert-danger">{{nombreError}}</small>
+<small  *nfIf='passError!=""' class="alert alert-danger">{{passError}}</small>
+</div>
+<div class="container">
+    <div >
+     
+            <div class="mb-3">
+              <label  for="email" class="form-label">Dirección Email</label>
+              <input  id="email" [(ngModel)]="email" type="email" class="form-control">
+              <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
+            </div>   
+            <div class="mb-3">
+                <label  for="nombre" class="form-label">Usuario</label>
+                <input  id="nombre" [(ngModel)]="nombre" type="text" class="form-control">
+              
+              </div>   
+            <div class="mb-3">
+                <label  for="password" class="form-label">Contraseña</label>
+                <input  id="password" [(ngModel)]="password" type="password" class="form-control">
+
+            </div>   
+          
+            <button type="submit" class="btn btn-primary" (click)="register()" >Submit</button>
+
+       
+         
+
+
+
+    </div>
+        
+
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+

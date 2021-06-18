@@ -1,0 +1,10 @@
+<h1>{{project.nombre}}</h1>
+<p>{{project.equipo}}</p>
+<p>{{miatributo}}</p>
+<div *ngFor="let atribute of projectAtributes">
+    <p>{{atribute.valuenumero}}</p>
+    <p>{{atribute.valueString}}</p>
+    <p>{{atribute.valuefecha}}</p>
+ 
+</div>
+<input type="text" [(ngModel)]="miatributo" name="" id="">
