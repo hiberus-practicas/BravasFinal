@@ -1,4 +1,19 @@
-<input type="text" [(ngModel)]="email" placeholder="Introduce el email con el que quieres registrarte"><br>
-<input type="password" [(ngModel)]="password" placeholder="Introduce la contraseña con la que quieres registrarte"><br>
-<button (click)="login()">Registrarse</button><br>
-<button (click)="logout()">Cerrar sesion</button>
+
+    <div class="container">
+        <div >
+         
+                <div class="mb-3">
+                  <label  for="email" class="form-label">Dirección Email</label>
+                  <input  id="email" [(ngModel)]="email" type="email" class="form-control">
+                  <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
+                </div>   
+
+                <div class="mb-3">
+                    <label  for="password" class="form-label">Contraseña</label>
+                    <input  id="password" [(ngModel)]="password" type="password" class="form-control">
+                </div>              
+                <button type="submit" class="btn btn-primary" (click)="login()" >Login</button>
+        </div>
+
+    </div>
+    

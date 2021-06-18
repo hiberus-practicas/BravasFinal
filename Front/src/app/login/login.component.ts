@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 
@@ -8,15 +9,16 @@ import { ApiService } from '../api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(    private _api: ApiService) { }
-
   ngOnInit(): void {
   }
+  constructor(    private _api: ApiService,private router:Router) { }
+
   email=""
   password=""
+
   login(){
     this._api.login(this.email, this.password);
+    this.router.navigate([''])
   }
   logout(){
     sessionStorage.removeItem("isLogged");

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   }
   constructor(
     private _user: UserService,
-    private _api: ApiService
+    private _api: ApiService,private router:Router
   ) { }
 
 
@@ -35,6 +36,9 @@ export class RegisterComponent implements OnInit {
 
   register(){
     this._api.register(this.email,this.nombre,this.password);
+    this.router.navigate(['login'])
+
+
   }
    
     validateRegister(s:string){
