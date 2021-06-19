@@ -7,22 +7,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Principal</a>
+            <a class="nav-link" aria-current="page" href="#"  routerLink="/">Principal</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Buscar Proyecto</a>
+            <a class="nav-link" href="" routerLinkActive="active"  routerLink="/directiva">Buscar Proyecto</a>
           </li>
      
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="active">
               Añadir
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Proyecto</a></li>
-              <li><a class="dropdown-item" href="#">Atributos</a></li>
+              <li><a class="dropdown-item"  routerLink="/create-project">Proyecto</a></li>
+              <li><a class="dropdown-item"  routerLink="/create-atribute">Atributos</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#"></a></li>
+              <li><a class="dropdown-item" routerLink="/list-atributes">Eliminar Atributos</a></li>
             </ul>
           </li>
 

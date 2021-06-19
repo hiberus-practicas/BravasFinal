@@ -2,6 +2,9 @@ small{
     color:red;
 }
 .container{
-    margin: 50px;
+    margin: 3%;
 
+}
+.alert{
+    width:100%;   
 }

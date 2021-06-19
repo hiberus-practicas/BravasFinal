@@ -14,14 +14,14 @@ export class CreateProjectComponent implements OnInit {
   ngOnInit(): void {
   }
   createProject(){
-    this._api.createProject("nombre","equipo",[
+    this._api.createProject("Proyecto junio","Hiberus Osaba",[
       {
-        "valor": "esto es p",
-        "nombre": "p"
+        "valor": "cordoba",
+        "nombre": "ciudad origen"
     },
     {
-      "valor": 2,
-      "nombre": "numero"
+      "valor": 500,
+      "nombre": "numero paginas"
     }
     ]);
   }

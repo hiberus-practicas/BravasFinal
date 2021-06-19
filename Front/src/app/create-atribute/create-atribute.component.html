@@ -1,10 +1,32 @@
-<input type="text" placeholder="Nombre del atributo" [(ngModel)]="nombreAtributo"><br>
-<select name="tipoDato" id="" [(ngModel)]="tipoDato">
-    <option hidden value="null">Selecciona el tipo de dato</option>
-    <option value="string">Cadena de texto</option>
-    <option value="integer">Numerico</option>
-    <option value="boolean">Verdadero/Falso</option>
-    <option value="date">Fecha</option>
-</select><br>
-<input type="text" placeholder="Descripcion del atributo" [(ngModel)]="descripcion"><br>
-<button (click)="createAtribute()">Crear atributo</button><br>
+<div class="container">
+  
+    <div >
+     
+            <div class="mb-3">
+              <label  for="nombreAtributo" class="form-label">Nombre Atributo</label>
+              <input  id="nombreAtributo" [(ngModel)]="nombreAtributo" type="text" class="form-control">
+
+            </div>  
+            <div class="mb-3">
+                <label for="tipoDato" class="form-label">Tipo Dato</label>
+                <select id="tipoDato" [(ngModel)]="tipoDato" class="form-select">
+                    <option hidden value="null">Selecciona el tipo de dato</option>
+                    <option value="string">Cadena de texto</option>
+                    <option value="integer">Numerico</option>
+                    <option value="boolean">Verdadero/Falso</option>
+                    <option value="date">Fecha</option>
+                </select>
+              </div> 
+              <div class="mb-3">
+                <label  for="descripcion" class="form-label">Descripción del atributo:</label>
+                <textarea  id="descripcion" [(ngModel)]="descripcion" placeholder="caracteristicas del atributo" class="form-control"></textarea>
+  
+              </div>
+         
+     
+          
+            <button type="submit" class="btn btn-primary" (click)="createAtribute()" >Submit</button>
+    </div>
+        
+
+</div>

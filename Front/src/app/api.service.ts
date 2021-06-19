@@ -1,23 +1,25 @@
 import { Attribute, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
-import { User, Atribute, Project } from './interfaces';
-import { UserService } from './user.service';
-import { EmailValidator } from '@angular/forms';
+import { User, Atribute} from './interfaces';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
   constructor(private _http: HttpClient) {
    }
+   
+   postId:any;
+   api_url:string='http://localhost:8080/api/v01/';
+  //  api_url:string='http://192.168.80.38:8080/api/v01/';
 
-  api_url:string='http://192.168.80.38:8080/api/v01/';
+  
 
-  postId:any
+
+
   register(email:string, nombre:string, password:string){
-    password= btoa(password)
+    password= btoa(password);
     return this._http.post(this.api_url+'/usuarios',{
       email:email,
       username:nombre,
@@ -25,22 +27,31 @@ export class ApiService {
     }).toPromise().then((res)=> {
       this.postId = res;
   })
-  console.log(this.postId)
 }
-login(nombre:string, password:string){
+
+
+login(nombre:string, password:string):boolean{
   password= btoa(password)
-  return this._http.post(this.api_url+'/usuarios/login',{
+  let respuesta;
+  this._http.post(this.api_url+'/usuarios/login',{
     username:nombre,
     pass:password
   }).toPromise().then((res)=> {
     this.postId = res;
     if(this.postId.usuario_id!=0){
+      respuesta=res;
       sessionStorage.setItem("isLogged",this.postId.usuario_id)
+  
     }
-    else{
-      alert("No existe")
+
+    })
+    if(respuesta!=0){
+      return true;
     }
-})
+    return false
+   
+ 
+
 }
 
 
@@ -94,11 +105,6 @@ changePassword(password:string){
   }
 
 
-
-
-
-
-
   createAtribute(nombre:string,tipo:string,descripcion:string){
     return this._http.post(this.api_url+"atributos/",{
       nombreAtributo:nombre,
@@ -134,9 +140,8 @@ changePassword(password:string){
   }
 
 
-
-
   createProject(nombre:string,equipo:string,atributos?:object[]){
+    
     return this._http.post(this.api_url+"proyectos/completo",{
       "nombre":nombre,
       "equipo":equipo,

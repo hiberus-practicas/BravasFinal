@@ -1,9 +1,8 @@
-<div>
-<small *nfIf='emailError==""' class="alert alert-danger">{{emailError}}</small>
-<small  *nfIf='nombreError!=""' class="alert alert-danger">{{nombreError}}</small>
-<small  *nfIf='passError!=""' class="alert alert-danger">{{passError}}</small>
-</div>
+<p *ngIf='emailError!=""' class="alert alert-danger">{{emailError}}</p>
+<p  *ngIf='nombreError!=""' class="alert alert-danger">{{nombreError}}</p>
+<p  *ngIf='passError!=""' class="alert alert-danger">{{passError}}</p>
 <div class="container">
+  
     <div >
      
             <div class="mb-3">
@@ -23,12 +22,6 @@
             </div>   
           
             <button type="submit" class="btn btn-primary" (click)="register()" >Submit</button>
-
-       
-         
-
-
-
     </div>
         
 

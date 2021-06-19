@@ -1,7 +1,7 @@
 
     <div class="container">
-        <div >
-         
+        <div *ngIf='logged==null'>
+   
                 <div class="mb-3">
                   <label  for="email" class="form-label">Dirección Email</label>
                   <input  id="email" [(ngModel)]="email" type="email" class="form-control">
@@ -14,6 +14,7 @@
                 </div>              
                 <button type="submit" class="btn btn-primary" (click)="login()" >Login</button>
         </div>
+        <button *ngIf='logged!=null' type="submit" class="btn btn-primary" (click)="logout()" >Logout</button>
 
     </div>
     

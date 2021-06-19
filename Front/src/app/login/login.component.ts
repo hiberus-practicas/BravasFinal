@@ -9,16 +9,19 @@ import { ApiService } from '../api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   ngOnInit(): void {
+    console.log(this.logged);
   }
+  logged=localStorage.getItem("isLogged");
+
   constructor(    private _api: ApiService,private router:Router) { }
 
   email=""
   password=""
 
   login(){
-    this._api.login(this.email, this.password);
-    this.router.navigate([''])
+   if(this._api.login(this.email, this.password)){this.router.navigate([''])}
   }
   logout(){
     sessionStorage.removeItem("isLogged");

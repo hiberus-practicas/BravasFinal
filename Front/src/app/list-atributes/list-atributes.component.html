@@ -1,7 +1,27 @@
-<div *ngFor="let atributo of atributes">
-    <article>
-        <h3>{{atributo.nombreAtributo}} <small>{{atributo.tipoDato}}</small></h3>
-        <p>{{atributo.descripcion}}</p>
-        <button (click)="deleteAtribute(atributo.nombreAtributo)">Eliminar atributo</button>
-    </article>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo Dato</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let atributo of atributes">
+            <th>{{atributo.nombreAtributo}}</th>
+            <td><small>{{atributo.tipoDato}}</small></td>
+            <td>{{atributo.descripcion}}</td>
+            <td><button (click)="deleteAtribute(atributo.nombreAtributo)" class="btn btn-danger">Eliminar atributo</button></td>
+          </tr>
+       
+        </tbody>
+        </table>
+        
+
+
 </div>
+
+
+

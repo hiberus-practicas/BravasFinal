@@ -35,31 +35,42 @@ export class RegisterComponent implements OnInit {
 
 
   register(){
-    this._api.register(this.email,this.nombre,this.password);
-    this.router.navigate(['login'])
-
+    if(this.validateEmail(this.email))
+      if(this.validateName(this.nombre))
+        if(this.validatePassword(this.password)){
+            this._api.register(this.email,this.nombre,this.password);
+            this.router.navigate(['login'])
+        }
 
   }
-   
-    validateRegister(s:string){
-      if(s=="email"){
-        if(!this.regExpEmail.test(this.email)){
-          this.emailError="Introduce un email valido (ej: email@email.com)"
-       }else{
-         this.emailError=""
-       }
-      }else if(s=="nombre"){
-        if(!this.regExpNombre.test(this.nombre)){
-          this.nombreError="El nombre debe contener entre 5 y 25 caracteres"
-       }else{
-         this.nombreError=""
-       }
-      }else{
-        if(!this.regExpPass.test(this.password)){
-          this.passError="La contraseña debe contener numeros y letras, ademas debe tener un largo de 8 caracteres"
-       }else{
-         this.passError=""
-       }
-      }
-    }
-}
+
+  validateEmail(email:String):Boolean{
+    if(this.regExpEmail.test(this.email)) {
+      this.emailError="";
+      return true};
+
+    this.emailError="Introduce un email valido (ej: email@email.com)"; 
+     return false;
+   }
+   validateName(name:String):Boolean{
+    if(this.regExpNombre.test(this.nombre)) {
+      this.nombreError="";
+      return true};
+
+    this.nombreError="El nombre debe contener entre 5 y 25 caracteres";
+     return false;
+   }
+   validatePassword(name:String):Boolean{
+    if(this.regExpNombre.test(this.nombre)){
+      this.passError="";
+      return true};
+
+    this.passError="La contraseña debe contener numeros y letras, ademas debe tener un largo de 8 caracteres";
+    return false;
+   }
+
+  }
+
+
+
+
