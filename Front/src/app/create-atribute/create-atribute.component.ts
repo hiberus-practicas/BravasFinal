@@ -8,18 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-atribute.component.css']
 })
 export class CreateAtributeComponent implements OnInit {
-  ngOnInit(): void {
-  }
-  constructor(private _api: ApiService) { }
+  ngOnInit(): void {}
 
-  nombreAtributo:string=""
-  tipoDato:string=""
-  descripcion:string=""
+  constructor(public _api: ApiService) { }
+
+  nombreAtributo:string;
+  tipoDato:string;
+  descripcion:string;
 
   createAtribute(){
     if(this.tipoDato!="") return this._api.createAtribute(this.nombreAtributo,this.tipoDato,this.descripcion);
-    
-      return null;
+    return null;
   }
 
 }

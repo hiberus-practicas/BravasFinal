@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { Proyecto } from '../Interfaces/Proyecto';
 
 @Component({
   selector: 'app-project',
@@ -9,22 +10,27 @@ import { Router, RouterModule, Routes } from '@angular/router';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
+  ngOnInit(): void {
+    this.listProject(this.id);
+    this.listProjectAtributes(this.id);
+  }
+ 
+  constructor(private _Activatedroute:ActivatedRoute, private router: Router, public _api: ApiService) { }
+
+  
+  project:Proyecto;
+  projectAtributes:any;
   id=parseInt(this._Activatedroute.snapshot.paramMap.get("e")||"0")
-  miatributo=""
-  constructor(private _Activatedroute:ActivatedRoute, private router: Router, private _api: ApiService) { }
-  project:any={}
-  projectAtributes:any={}
-  getProject(e:number){
+  miatributo:string;
+
+  listProject(e:number):void{
     this._api.getProject(e).subscribe((objeto:any)=>this.project=objeto);
     console.log(this.project)
   }
-  getProjectAtributes(e:number){
+  listProjectAtributes(e:number):void{
     this._api.getProjectAtribute(e).subscribe((objeto:any)=>this.projectAtributes=objeto)
     console.log(this.projectAtributes)
   }
-  ngOnInit(): void {
-    this.getProject(this.id);
-    this.getProjectAtributes(this.id);
-  }
+
 
 }

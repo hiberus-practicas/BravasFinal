@@ -12,11 +12,9 @@ import { ProyectoAtributoDTO } from '../Interfaces/dto/ProyectoAtributoDTO';
   styleUrls: ['./create-project.component.css']
 })
 export class CreateProjectComponent implements OnInit {
-  ngOnInit(): void {
-    this._api.listAtributes().subscribe(elemento=>this.listar=elemento);
-  }
+  ngOnInit(): void {this._api.listAtributes().subscribe(elemento=>this.listar=elemento);}
 
-  constructor(private _api: ApiService,private router:Router) { }
+  constructor(public _api: ApiService,private router:Router) { }
 
   nombreProyecto:string;
   nombreEquipo:string;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 
@@ -11,29 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  ngOnInit(): void {
-  }
-  constructor(
-    private _user: UserService,
-    private _api: ApiService,private router:Router
-  ) { }
+  ngOnInit(): void {}
+  constructor(public _api: ApiService,private router:Router) { }
 
 
 
-  email:string="";
-  nombre:string="";
-  password:string="";
+  email:string;
+  nombre:string;
+  password:string;
   regExpEmail = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
   regExpNombre = new RegExp('[a-z0-9._%+-]{5,25}$');
   regExpPass = new RegExp('^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$');
-  emailError:string="";   
-  nombreError:string="";   
-  passError:string=""; 
+  emailError:string;   
+  nombreError:string;   
+  passError:string; 
 
 
   
-
-
   register(){
     if(this.validateEmail(this.email))
       if(this.validateName(this.nombre))

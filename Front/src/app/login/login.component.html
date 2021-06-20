@@ -1,6 +1,6 @@
 
-    <div class="container">
-        <div *ngIf='logged==null'>
+    <div class="container" *ngIf="!this._api.logueado">
+        <div>
    
                 <div class="mb-3">
                   <label  for="email" class="form-label">Dirección Email</label>
@@ -14,7 +14,7 @@
                 </div>              
                 <button type="submit" class="btn btn-primary" (click)="login()" >Login</button>
         </div>
-        <button *ngIf='logged!=null' type="submit" class="btn btn-primary" (click)="logout()" >Logout</button>
+      
 
     </div>
     

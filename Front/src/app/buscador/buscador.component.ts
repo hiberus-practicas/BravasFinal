@@ -15,7 +15,7 @@ export class BuscadorComponent implements OnInit {
     this.listAtributes();
   }
 
-  constructor(private service:ApiService,private activatedRoute:ActivatedRoute,private router:Router) { }
+  constructor(public _api:ApiService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
   textoBusqueda:string="";
   filtros:AtributoDTO[]=[];
@@ -25,7 +25,7 @@ export class BuscadorComponent implements OnInit {
   value:any;
 
   listAtributes():void{
-    this.service.listAtributes().subscribe(objeto=>this.listar=objeto);
+    this._api.listAtributes().subscribe(objeto=>this.listar=objeto);
   }
   addfilter(nombreatributo:string):void{
    let pushear =new AtributoDTO(nombreatributo,this.value);

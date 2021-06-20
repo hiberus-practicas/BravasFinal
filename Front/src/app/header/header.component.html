@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Bravas App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,12 +11,13 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="#"  routerLink="/">Principal</a>
           </li>
-          <li class="nav-item">
+
+          <li class="nav-item" *ngIf="this._api.logueado">
             <a class="nav-link" href="" routerLinkActive="active"  routerLink="/buscador">Buscar Proyecto</a>
           </li>
      
 
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" *ngIf="this._api.logueado">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="active">
               Añadir
             </a>
@@ -25,15 +28,33 @@
               <li><a class="dropdown-item" routerLink="/list-atributes">Eliminar Atributos</a></li>
             </ul>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href=""><i class="bi bi-person-circle"></i></a>
+          
+          <li class="nav-item" *ngIf="this._api.logueado">
+            <a class="nav-link" href=""> <i class="fas fa-user"></i>Usuario</a>
           </li>
+          <li class="nav-item " *ngIf="this._api.logueado">
+            <a class="nav-link"> <i class="fas fa-sign-out-alt"(click)="logout()"></i>Logout</a>
+          </li>
+
+          <li class="nav-item "*ngIf="!this._api.logueado">
+            <a class="nav-link" routerLink="/login"> <i class="fas fa-user"></i>Login</a>
+          </li>
+
+          <li class="nav-item "*ngIf="!this._api.logueado">
+            <a class="nav-link" routerLink="/register">  <i class="fas fa-user-plus"></i>Registrarse</a>
+          </li>
+
+         
+         
 
         </ul>
       </div>
     </div>
   </nav>
+
+
+
+
 
 
 

@@ -6,10 +6,15 @@ import { ApiService } from '../api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  ngOnInit(): void { }
 
-  constructor(private _api: ApiService) { }
+  constructor(public _api: ApiService) { }
 
-  ngOnInit(): void {
-  }
+  
+
+  logout(){sessionStorage.removeItem("isLogged"); this._api.logueado=false}
+
+  sessionLocalstorage() { if(localStorage.getItem("isLogged")) this._api.logueado=true}
 
 }

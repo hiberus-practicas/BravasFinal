@@ -3,7 +3,7 @@
 <p  *ngIf='passError!=""' class="alert alert-danger">{{passError}}</p>
 <div class="container">
   
-    <div >
+    <div class="container" *ngIf="!this._api.logueado" >
      
             <div class="mb-3">
               <label  for="email" class="form-label">Dirección Email</label>

@@ -10,20 +10,19 @@ import { ApiService } from '../api.service';
 })
 export class LoginComponent implements OnInit {
 
-  ngOnInit(): void {
-    console.log(this.logged);
-  }
-  logged=localStorage.getItem("isLogged");
+  ngOnInit(): void {}
 
-  constructor(    private _api: ApiService,private router:Router) { }
+  constructor( public _api: ApiService,private router:Router) { }
 
-  email=""
-  password=""
+  email:string;
+  password:string;
 
-  login(){
-   if(this._api.login(this.email, this.password)){this.router.navigate([''])}
+  login(){if(this._api.login(this.email, this.password)){
+    this.router.navigate(['']);
+    this._api.logueado=true;
   }
-  logout(){
-    sessionStorage.removeItem("isLogged");
+   
   }
+ 
+
 }

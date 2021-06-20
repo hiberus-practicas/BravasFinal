@@ -15,6 +15,7 @@ import { ProyectoAddDTO } from './Interfaces/dto/ProyectoAddDTO';
 export class ApiService {
   constructor(private _http: HttpClient) {
    }
+   logueado:boolean=false;
    
    postId:any;
    api_url:string='http://localhost:8080/api/v01/';
@@ -189,6 +190,9 @@ changePassword(password:string){
   busquedafiltrada(atributo:AtributoDTO):Observable<Proyecto[]>{
     return this._http.post<Proyecto[]>(this.api_url+'/atributos/busqueda/',atributo);
   }
+
+
+  getlogueo():boolean{return this.logueado;}
 
 
 }

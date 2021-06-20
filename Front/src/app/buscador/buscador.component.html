@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container"*ngIf="this._api.logueado">
   <h1>Buscador:</h1>
   <div class="input-group">
     <input type="text" class="form-control" value="Buscador proyectos" [(ngModel)]="textoBusqueda">
