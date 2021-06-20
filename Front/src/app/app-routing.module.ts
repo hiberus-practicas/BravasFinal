@@ -12,7 +12,7 @@ import { ModifyProjectComponent } from './modify-project/modify-project.componen
 import { ListAtributesComponent } from './list-atributes/list-atributes.component';
 import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
-import { SemanticSearchComponent } from './semantic-search/semantic-search.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: "list-atributes", component: ListAtributesComponent},
   {path: "list-projects", component: ListProjectsComponent},
   {path: "project/:e", component: ProjectComponent},
-  {path: "semantic-search", component: SemanticSearchComponent}
+  {path:"buscador",component:BuscadorComponent}
 
 ];
 

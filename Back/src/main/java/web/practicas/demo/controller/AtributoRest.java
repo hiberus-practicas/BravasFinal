@@ -70,7 +70,7 @@ public class AtributoRest {
         }
     }
 
-    @GetMapping("/busqueda/")
+    @PostMapping("/busqueda/")
     public ResponseEntity<?> buscarPorAtributoValor( @RequestBody AtributoDTO valordto) throws Exception {
         try {
             String atributo=valordto.getAtributo();

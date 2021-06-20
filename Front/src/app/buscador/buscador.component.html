@@ -1,0 +1,54 @@
+
+
+<div class="container">
+  <h1>Buscador:</h1>
+  <div class="input-group">
+    <input type="text" class="form-control" value="Buscador proyectos" [(ngModel)]="textoBusqueda">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" (click)="lista.semanticSearch()">Buscar</button>
+    </span>
+  </div>
+
+  <button (click)="vistafiltros=!vistafiltros" class="btn btn-primary">filtros</button>
+  <div class="card " *ngIf="vistafiltros">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Atributo</th>
+          <th scope="col">Tipo de dato</th>
+          <th scope="col">input</th>
+          <th scope="col">enviar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let elemento of listar">
+          <th scope="row">{{elemento.nombreAtributo}}</th>
+          <td>{{elemento.tipoDato}}</td>
+          <td>
+            <input type="text" [(ngModel)]="value" *ngIf="elemento.tipoDato=='string'">
+            <input type="number" [(ngModel)]="value" *ngIf="elemento.tipoDato=='integer'">
+
+            <div class="form-check" *ngIf="elemento.tipoDato=='boolean'">
+              <input class="form-check-input"  [(ngModel)]="value" type="checkbox" value="1"  id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                {{elemento.nombreAtributo}}
+              </label>
+            </div>
+
+            <input type="date"  [(ngModel)]="value" *ngIf="elemento.tipoDato=='date'">
+
+          </td>
+          <td><button (click)="addfilter(elemento.nombreAtributo)" class="btn btn-warning">añadir filtro</button></td>
+        </tr>
+      </tbody>
+
+      <button (click)="lista.busquedafiltrada()" class="btn btn-primary">buscar por filtros</button>
+    </table>
+
+
+
+  </div>
+
+
+  <app-list-projects [textoBusqueda]="textoBusqueda" [filtros]="filtros" #lista></app-list-projects>

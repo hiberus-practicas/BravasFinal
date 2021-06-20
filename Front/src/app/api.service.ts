@@ -1,6 +1,12 @@
 import { Attribute, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { User, Atribute} from './interfaces';
+import { Usuario } from './Interfaces/Usuario';
+import { Atributo } from './Interfaces/Atributo';
+import { Observable } from 'rxjs';
+import { Proyecto } from './Interfaces/Proyecto';
+import { AtributoDTO } from './Interfaces/dto/AtributoDTO';
+import { ProyectoAddDTO } from './Interfaces/dto/ProyectoAddDTO';
+ 
 
 
 @Injectable({
@@ -27,9 +33,7 @@ export class ApiService {
     }).toPromise().then((res)=> {
       this.postId = res;
   })
-}
-
-
+  }
 login(nombre:string, password:string):boolean{
   password= btoa(password)
   let respuesta;
@@ -54,13 +58,11 @@ login(nombre:string, password:string):boolean{
 
 }
 
-
-
 changePassword(password:string){
-  let userLogged:User
+  let userLogged:Usuario
   let idLogged:number=parseInt(sessionStorage.getItem("isLogged")||"0")
   
-  this._http.get<User>(this.api_url+"usuarios/"+idLogged).subscribe((res:User)=> 
+  this._http.get<Usuario>(this.api_url+"usuarios/"+idLogged).subscribe((res:Usuario)=> 
   {
     userLogged = res;
   console.log(this.api_url+"usuarios/"+idLogged)
@@ -78,10 +80,10 @@ changePassword(password:string){
 
 
   changeUsername(username:string){
-    let userLogged:User
+    let userLogged:Usuario
     let idLogged:number=parseInt(sessionStorage.getItem("isLogged")||"0")
     
-    this._http.get<User>(this.api_url+"usuarios/"+idLogged).subscribe((res:User)=> 
+    this._http.get<Usuario>(this.api_url+"usuarios/"+idLogged).subscribe((res:Usuario)=> 
     {
       userLogged = res;
     console.log(this.api_url+"usuarios/"+idLogged)
@@ -117,8 +119,8 @@ changePassword(password:string){
   }
 
   modifyAtribute(nombreActual:string,nuevoNombre:string){
-    let atribute:Atribute
-    this._http.get<Atribute>(this.api_url+"atributos/"+nombreActual).subscribe((res:Atribute)=> 
+    let atribute:Atributo
+    this._http.get<Atributo>(this.api_url+"atributos/"+nombreActual).subscribe((res:Atributo)=> 
     {
       atribute = res;
     return this._http.put(this.api_url+'atributos/'+atribute.nombreAtributo,{
@@ -140,13 +142,9 @@ changePassword(password:string){
   }
 
 
-  createProject(nombre:string,equipo:string,atributos?:object[]){
+  createProject(proyecto:ProyectoAddDTO){
     
-    return this._http.post(this.api_url+"proyectos/completo",{
-      "nombre":nombre,
-      "equipo":equipo,
-      "atributos": atributos
-    }).toPromise().then((res)=>{
+    return this._http.post(this.api_url+"proyectos/completo",proyecto).toPromise().then((res)=>{
       this.postId=res;
       console.log(this.postId)
     })
@@ -171,8 +169,8 @@ changePassword(password:string){
     console.log(this.postId)
   }
 
-  listAtributes(){
-    return this._http.get<any>(this.api_url+"atributos/");
+  listAtributes():Observable<Atributo[]>{
+    return this._http.get<Atributo[]>(this.api_url+"atributos/");
   }
   listProjects(){
     return this._http.get<any>(this.api_url+"proyectos/");
@@ -187,6 +185,12 @@ changePassword(password:string){
   semanticSearch(s:string){
     return this._http.get<any>(this.api_url+'relaciones/busqueda/'+s);
   }
+
+  busquedafiltrada(atributo:AtributoDTO):Observable<Proyecto[]>{
+    return this._http.post<Proyecto[]>(this.api_url+'/atributos/busqueda/',atributo);
+  }
+
+
 }
 
 

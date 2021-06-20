@@ -1,9 +1,59 @@
 
+<div class="container">
+    <div class="mb-3">
+        <label  for="nombreAtributo" class="form-label">Nombre Proyecto</label>
+        <input  id="nombreAtributo" [(ngModel)]="nombreProyecto" type="text" class="form-control">
+
+      </div>  
+      <div class="mb-3">
+        <label  for="nombreAtributo" class="form-label">Nombre Equipo</label>
+        <input  id="nombreAtributo" [(ngModel)]="nombreEquipo" type="text" class="form-control">
+
+      </div>  
+      <button (click)="vistaAtributos=!vistaAtributos" class="btn btn-primary">atributos</button>
+  <div class="card " *ngIf="vistaAtributos">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Atributo</th>
+          <th scope="col">Tipo de dato</th>
+          <th scope="col">valor</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let elemento of listar">
+          <th scope="row">{{elemento.nombreAtributo}}</th>
+          <td>{{elemento.tipoDato}}</td>
+          <td>
+            <input type="text" [(ngModel)]="value" *ngIf="elemento.tipoDato=='string'">
+            <input type="number" [(ngModel)]="value" *ngIf="elemento.tipoDato=='integer'">
+
+            <div class="form-check" *ngIf="elemento.tipoDato=='boolean'">
+              <input class="form-check-input"  [(ngModel)]="value" type="checkbox" value="1"  id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                {{elemento.nombreAtributo}}
+              </label>
+            </div>
+
+            <input type="date"  [(ngModel)]="value" *ngIf="elemento.tipoDato=='date'">
+
+          </td>
+          <td><button class="btn btn-warning"(click)="addAtributo(elemento.nombreAtributo)" >Añadir atributo</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+   
+</div>
+<div class="boton">
+<button (click)="createProject()" class="btn btn-primary">Crear proyecto</button>
+</div>
 
 
 
 
 
-
-
-<button (click)="createProject()">Crear proyecto</button>

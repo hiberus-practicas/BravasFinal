@@ -19,7 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import { GeneralComponent } from './general/general.component';
 import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
-import { SemanticSearchComponent } from './semantic-search/semantic-search.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { SemanticSearchComponent } from './semantic-search/semantic-search.compo
     GeneralComponent,
     ListProjectsComponent,
     ProjectComponent,
-    SemanticSearchComponent,
+    BuscadorComponent,
 
   ],
   imports: [

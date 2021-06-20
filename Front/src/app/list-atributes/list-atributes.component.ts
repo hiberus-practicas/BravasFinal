@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Atributo } from '../Interfaces/Atributo';
 
 @Component({
   selector: 'app-list-atributes',
@@ -10,7 +11,7 @@ export class ListAtributesComponent implements OnInit {
 
   constructor(private _api: ApiService) { }
 
-  atributes:any=[]
+  atributes:Atributo[];
 
 
   listAtributes():void{

@@ -30,7 +30,7 @@ public class ProyectoRest extends BaseControllerImplementation<Proyecto, Proyect
     public ResponseEntity<?> add(@RequestBody ProyectoAddDTO entidad) throws Exception {
     try{
 
-        Proyecto proyecto=service.add(new Proyecto(entidad.getEquipo(),entidad.getNombre()));
+        Proyecto proyecto=service.add(new Proyecto(entidad.getNombre(),entidad.getEquipo()));
 
         for (ProyectoAtributoDTO elemento:entidad.getAtributos()) {
             System.out.println(proyecto.getId());

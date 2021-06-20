@@ -1,6 +1,39 @@
-<div *ngFor="let proyecto of projects">
-    <article >
-        <h3 >{{proyecto.nombre}} <small>by: {{proyecto.equipo}}</small></h3>
-        <button (click)="navToProject(proyecto.id)">Go</button>
-    </article>
-</div>    
+ <div class="container">
+   <h1>Resultados:</h1>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Proyecto</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">Detalles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let elemento of projects">
+            <th scope="row">{{elemento.nombre}}</th>
+            <td>{{elemento.equipo}}</td>
+            <td><button (click)="navToProject(elemento.id)" class="btn btn-warning">Detalles</button></td>
+          </tr>
+        </tbody>
+  
+      
+      </table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

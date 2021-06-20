@@ -84,8 +84,8 @@ public class RelacionesService {
             List<Proyecto> universoProcesado = new ArrayList();
 
             for (Atributo_Proyecto elemento : universo) {
-
-                universoProcesado.add(elemento.getMykey().getProyecto());
+                if(!universoProcesado.contains(elemento.getMykey().getProyecto()))
+                    universoProcesado.add(elemento.getMykey().getProyecto());
             }
 
 

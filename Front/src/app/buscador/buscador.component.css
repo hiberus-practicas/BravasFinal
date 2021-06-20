@@ -1,0 +1,8 @@
+.cards-container {
+    display: flex;
+    align-items: center;
+}
+.container{
+    margin:3%;
+
+}
