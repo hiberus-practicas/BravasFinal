@@ -13,6 +13,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.listProject(this.id);
     this.listProjectAtributes(this.id);
+    this._api.mantenerSession()
   }
  
   constructor(private _Activatedroute:ActivatedRoute, private router: Router, public _api: ApiService) { }

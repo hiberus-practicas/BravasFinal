@@ -10,8 +10,7 @@ export class ModifyProjectComponent implements OnInit {
 
   constructor(private _api: ApiService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {this._api.mantenerSession()}
   modifyProject() {
     this._api.modifyProject("nombre","nuevo nombre","equipo","nuevo equipo",1)
   }

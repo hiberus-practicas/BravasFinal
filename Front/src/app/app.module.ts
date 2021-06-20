@@ -20,6 +20,7 @@ import { GeneralComponent } from './general/general.component';
 import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { DetallesusuarioComponent } from './detallesusuario/detallesusuario.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { BuscadorComponent } from './buscador/buscador.component';
     ListProjectsComponent,
     ProjectComponent,
     BuscadorComponent,
+    DetallesusuarioComponent,
 
   ],
   imports: [

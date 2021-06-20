@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-atribute.component.css']
 })
 export class CreateAtributeComponent implements OnInit {
-  ngOnInit(): void {}
+  ngOnInit(): void {this._api.mantenerSession()}
 
   constructor(public _api: ApiService) { }
 

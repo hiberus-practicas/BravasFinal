@@ -9,7 +9,7 @@ import { Atributo } from '../Interfaces/Atributo';
 })
 export class ListAtributesComponent implements OnInit {
 
-  constructor(public _api: ApiService) { }
+  constructor(public _api: ApiService) { this._api.mantenerSession()}
 
   atributes:Atributo[];
 

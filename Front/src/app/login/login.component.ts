@@ -17,9 +17,11 @@ export class LoginComponent implements OnInit {
   email:string;
   password:string;
 
-  login(){if(this._api.login(this.email, this.password)){
-    this.router.navigate(['']);
+  login(){
+    if(this._api.login(this.email, this.password)==true){
     this._api.logueado=true;
+    this.router.navigate(['']);
+    
   }
    
   }

@@ -1,17 +1,47 @@
+
 <div class="container" *ngIf="this._api.logueado">
-    <h1>{{project.nombre}}</h1>
-    <p>{{project.equipo}}</p>
-    <p>{{miatributo}}</p>
-    <div *ngFor="let atribute of projectAtributes">
-        <p>{{atribute.valuenumero}}</p>
-        <p>{{atribute.valueString}}</p>
-        <p>{{atribute.valuefecha}}</p>
-     
-    </div>
-    <input type="text" [(ngModel)]="miatributo" name="" id="">
+    <h3>Datos Proyecto:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Nombre Proyecto</th>
+              <th scope="col">Equipo</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th scope="row">{{project.nombre}}</th>
+                  <th scope="row">{{project.equipo}}</th>
+              </tr>
 
+          </tbody>
 
+    </table>
+ 
+    <h3>Detalles proyecto:</h3>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Atributo</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atribute of projectAtributes">
+            <th scope="row">{{atribute.mykey.atributo.nombreAtributo}}</th>
+            <td>{{atribute.valuenumero}}{{atribute.valueString}}{{atribute.valuefecha}}</td>
+           
+          </tr>
+        </tbody>
+  
+  
+      </table>
+  
 </div>
+
+
+
+
 
 
 

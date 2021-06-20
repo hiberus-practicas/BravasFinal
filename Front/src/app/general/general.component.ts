@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-general',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _api:ApiService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

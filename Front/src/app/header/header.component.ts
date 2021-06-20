@@ -7,14 +7,18 @@ import { ApiService } from '../api.service';
 })
 export class HeaderComponent implements OnInit {
   
-  ngOnInit(): void { }
+  
+  ngOnInit(): void { this._api.mantenerSession()}
 
   constructor(public _api: ApiService) { }
 
   
 
-  logout(){sessionStorage.removeItem("isLogged"); this._api.logueado=false}
+  logout(){sessionStorage.removeItem("isLogged");{ this._api.logueado=false
+    this._api.peticionid=0;
+  }
+}
 
-  sessionLocalstorage() { if(localStorage.getItem("isLogged")) this._api.logueado=true}
+  
 
 }

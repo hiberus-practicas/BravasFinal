@@ -12,6 +12,7 @@ import { AtributoDTO } from '../Interfaces/dto/AtributoDTO';
 })
 export class BuscadorComponent implements OnInit {
   ngOnInit(): void {
+    this._api.mantenerSession()
     this.listAtributes();
   }
 

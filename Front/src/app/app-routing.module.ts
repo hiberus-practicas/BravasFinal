@@ -13,6 +13,7 @@ import { ListAtributesComponent } from './list-atributes/list-atributes.componen
 import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { DetallesusuarioComponent } from './detallesusuario/detallesusuario.component';
 
 
 const routes: Routes = [
@@ -26,9 +27,10 @@ const routes: Routes = [
   {path: "create-project", component: CreateProjectComponent},
   {path: "modify-component", component: ModifyProjectComponent},
   {path: "list-atributes", component: ListAtributesComponent},
-  {path: "list-projects", component: ListProjectsComponent},
+  {path: "list-projects/:e", component: ListProjectsComponent},
   {path: "project/:e", component: ProjectComponent},
-  {path:"buscador",component:BuscadorComponent}
+  {path:"buscador",component:BuscadorComponent},
+  {path:"detallesusuario/:e",component:DetallesusuarioComponent}
 
 ];
 

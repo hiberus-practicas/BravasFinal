@@ -1,4 +1,4 @@
-import { Attribute, Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Usuario } from './Interfaces/Usuario';
 import { Atributo } from './Interfaces/Atributo';
@@ -6,20 +6,24 @@ import { Observable } from 'rxjs';
 import { Proyecto } from './Interfaces/Proyecto';
 import { AtributoDTO } from './Interfaces/dto/AtributoDTO';
 import { ProyectoAddDTO } from './Interfaces/dto/ProyectoAddDTO';
+import { UsuarioDto } from './Interfaces/dto/UsuarioDTO';
  
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
-  constructor(private _http: HttpClient) {
-   }
+export class ApiService implements OnInit{
+  ngOnInit(): void { }
+
+  constructor(private _http: HttpClient){}  
    logueado:boolean=false;
+
    
    postId:any;
    api_url:string='http://localhost:8080/api/v01/';
   //  api_url:string='http://192.168.80.38:8080/api/v01/';
+  peticionid:number;
 
   
 
@@ -36,28 +40,30 @@ export class ApiService {
   })
   }
 login(nombre:string, password:string):boolean{
-  password= btoa(password)
-  let respuesta;
-  this._http.post(this.api_url+'/usuarios/login',{
-    username:nombre,
-    pass:password
-  }).toPromise().then((res)=> {
-    this.postId = res;
-    if(this.postId.usuario_id!=0){
-      respuesta=res;
-      sessionStorage.setItem("isLogged",this.postId.usuario_id)
+
+this.loginRest(nombre,password);
+
+
+ if(this.peticionid!=0&&this.peticionid!=undefined){
   
-    }
-
-    })
-    if(respuesta!=0){
-      return true;
-    }
-    return false
-   
- 
-
+   let peticionstring=String(this.peticionid);
+   sessionStorage.setItem('id',peticionstring);
+   return true;
+ }
+   return false;
+    
 }
+  async loginRest(nombre:string, password:string){
+  password= btoa(password)
+  let usuario=new UsuarioDto(nombre,password);
+ 
+  await  this._http.post<number>(this.api_url+"usuarios/login",usuario).subscribe(respuesta=>{this.peticionid=respuesta
+  
+  });
+  
+  
+}
+
 
 changePassword(password:string){
   let userLogged:Usuario
@@ -193,8 +199,21 @@ changePassword(password:string){
 
 
   getlogueo():boolean{return this.logueado;}
+  sessionServerstorage():boolean{
+    let resultado;
+    this._http.get<boolean>(this.api_url+'usuarios/session/'+sessionStorage.getItem("id")).subscribe(peticion=>resultado=peticion);
+    return resultado;
+  }
+  mantenerSession():void{
+    if(this.sessionServerstorage()){
+      this.logueado=true;
+    }
+  }
+    
+    
+    
 
-
+ 
 }
 
 

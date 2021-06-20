@@ -28,18 +28,27 @@ public class UsuarioRest  extends BaseControllerImplementation<Usuarios,UsuarioS
 
 
 	@PostMapping("/login")
-	public ResponseEntity<Logueo> islogged(@RequestBody UsuarioDto usuariolog) {
+	public ResponseEntity<Long> islogged(@RequestBody UsuarioDto usuariolog) {
 		
 		
 		try {
+
 			return ResponseEntity.status(HttpStatus.OK).body(service.isLogged(usuariolog));
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Logueo(0l));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(0l);
 			
 		}
 		
 		
+	}
+	@GetMapping("/session/{id}")
+	public ResponseEntity<Boolean>  session (@PathVariable long id){
+		try{
+			return ResponseEntity.status(HttpStatus.OK).body(service.session(id));
+		}catch (Exception e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+		}
 	}
 
 	

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { AtributoDTO } from '../Interfaces/dto/AtributoDTO';
 import { Proyecto } from '../Interfaces/Proyecto';
@@ -10,18 +10,24 @@ import { Proyecto } from '../Interfaces/Proyecto';
   styleUrls: ['./list-projects.component.css']
 })
 export class ListProjectsComponent implements OnInit {
-  ngOnInit(): void {}
+  ngOnInit(): void {this._api.mantenerSession();
+ 
+    if(this.todosProyectos=="todos"){
+      this.listProjects();
+      this.todosProyectos="";
+    }
+  }
 
-  constructor(public _api: ApiService, private router: Router) { }
+  constructor(public _api: ApiService, private router: Router,private _Activatedroute:ActivatedRoute) { }
 
   @Input() textoBusqueda:string;
   @Input() filtros:AtributoDTO[];
 
   projects:Proyecto[];
-  
+  todosProyectos:string=this._Activatedroute.snapshot.paramMap.get("e")||"todos";
 
 
-  listProjects():void{this._api.listProjects().subscribe((objeto:any)=>this.projects=objeto);}
+  listProjects():void{this._api.listProjects().subscribe(objeto=>this.projects=objeto);}
 
   semanticSearch():void{ 
     console.log(this.textoBusqueda);

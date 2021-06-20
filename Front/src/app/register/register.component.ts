@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  ngOnInit(): void {}
+  ngOnInit(): void {this._api.mantenerSession()}
   constructor(public _api: ApiService,private router:Router) { }
 
 
@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit {
   regExpEmail = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
   regExpNombre = new RegExp('[a-z0-9._%+-]{5,25}$');
   regExpPass = new RegExp('^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$');
-  emailError:string;   
-  nombreError:string;   
-  passError:string; 
+  emailError:string="";   
+  nombreError:string="";   
+  passError:string=""; 
 
 
   
