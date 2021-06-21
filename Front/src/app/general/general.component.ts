@@ -10,6 +10,8 @@ export class GeneralComponent implements OnInit {
 
   constructor(public _api:ApiService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this._api.mantenerSession();
+   }
 
 }

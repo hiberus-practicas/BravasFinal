@@ -1,16 +1,17 @@
 
+<p *ngIf='loginError!=""' class="alert alert-danger">{{loginError}}</p>
     <div class="container" *ngIf="!isLogged">
         <div>
    
                 <div class="mb-3">
                   <label  for="email" class="form-label">Dirección Email</label>
-                  <input  id="email" [(ngModel)]="email" type="email" class="form-control">
+                  <input (keyup.enter)="login()" id="email" [(ngModel)]="email" type="email" class="form-control">
                   <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
                 </div>   
 
                 <div class="mb-3">
                     <label  for="password" class="form-label">Contraseña</label>
-                    <input  id="password" [(ngModel)]="password" type="password" class="form-control">
+                    <input (keyup.enter)="login()" id="password" [(ngModel)]="password" type="password" class="form-control">
                 </div>              
                 <button type="submit" class="btn btn-primary" (click)="login()" >Login</button>
         </div>

@@ -32,6 +32,11 @@ export class ProjectComponent implements OnInit {
     this._api.getProjectAtribute(e).subscribe((objeto:any)=>this.projectAtributes=objeto)
     console.log(this.projectAtributes)
   }
-
-
+ deleteProject(){
+    this._api.deleteProject(this.id)
+    this.router.navigate(['list-projects/todos'])
+  }
+  navToModify(){
+    this.router.navigate(['/modify-project/'+this.id])
+  }
 }

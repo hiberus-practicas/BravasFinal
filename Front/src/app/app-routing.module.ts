@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "create-atribute", component: CreateAtributeComponent},
   {path: "modify-atribute", component: ModifyAtributeComponent},
   {path: "create-project", component: CreateProjectComponent},
-  {path: "modify-component", component: ModifyProjectComponent},
+  {path: "modify-project/:id", component: ModifyProjectComponent},
   {path: "list-atributes", component: ListAtributesComponent},
   {path: "list-projects/:e", component: ListProjectsComponent},
   {path: "project/:e", component: ProjectComponent},

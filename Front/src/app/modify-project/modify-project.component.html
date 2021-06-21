@@ -1,1 +1,9 @@
-<button (click)="modifyProject()">Cambiar proyecto</button>
+<div class="container" >
+    <br>
+    <label  for="nombre" class="form-label">Nuevo nombre</label>
+    <input (keyup.enter)="modifyProject()" id="nombre" [(ngModel)]="nuevoNombre" type="text" class="form-control">
+    <label  for="equipo" class="form-label">Nuevo equipo</label>
+    <input (keyup.enter)="modifyProject()" id="equipo" [(ngModel)]="nuevoEquipo" type="text" class="form-control">
+    <br>
+    <button class="btn btn-warning " (click)="modifyProject()">Modificar</button>
+</div>

@@ -36,7 +36,7 @@ export class CreateProjectComponent implements OnInit {
     console.log(this.nombreProyecto)
     let proyecto=new ProyectoAddDTO(this.nombreProyecto,this.nombreEquipo,this.atributos);
     this._api.createProject(proyecto);
-    this.router.navigate(['buscador'])
+    this.router.navigate(['buscador']);
     
 }
 }

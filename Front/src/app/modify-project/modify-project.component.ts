@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { Proyecto } from '../Interfaces/Proyecto';
 @Component({
   selector: 'app-modify-project',
   templateUrl: './modify-project.component.html',
@@ -8,10 +9,15 @@ import { ApiService } from '../api.service';
 })
 export class ModifyProjectComponent implements OnInit {
 
-  constructor(private _api: ApiService) { }
+  constructor(private _api: ApiService, private _Activatedroute:ActivatedRoute) { }
+  nuevoNombre:string;
+  nuevoEquipo:string;
+  id=parseInt(this._Activatedroute.snapshot.paramMap.get("id")||"0");
 
-  ngOnInit(): void {this._api.mantenerSession()}
+  ngOnInit(): void {
+  this._api.mantenerSession()
+  }
   modifyProject() {
-    this._api.modifyProject("nombre","nuevo nombre","equipo","nuevo equipo",1)
+    this._api.modifyProject(this.nuevoNombre,this.nuevoEquipo,this.id)
   }
 }

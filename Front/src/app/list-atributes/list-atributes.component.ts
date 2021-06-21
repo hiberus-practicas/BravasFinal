@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Atributo } from '../Interfaces/Atributo';
 
@@ -9,7 +10,7 @@ import { Atributo } from '../Interfaces/Atributo';
 })
 export class ListAtributesComponent implements OnInit {
 
-  constructor(public _api: ApiService) { this._api.mantenerSession()}
+  constructor(public _api: ApiService, private router:Router) { this._api.mantenerSession()}
 
   atributes:Atributo[];
 
@@ -19,8 +20,10 @@ export class ListAtributesComponent implements OnInit {
   }
   deleteAtribute(e:string){
     this._api.deleteAtribute(e);
-  
-    location.reload();
+    this.listAtributes();
+    this.router.navigate(['list-atributes']);
+    
+
   }
     ngOnInit(): void {
     this.listAtributes()

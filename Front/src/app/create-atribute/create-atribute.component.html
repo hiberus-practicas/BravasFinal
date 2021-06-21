@@ -3,8 +3,8 @@
     <div >
      
             <div class="mb-3">
-              <label  for="nombreAtributo" class="form-label">Nombre Atributo</label>
-              <input  id="nombreAtributo" [(ngModel)]="nombreAtributo" type="text" class="form-control">
+              <label for="nombreAtributo" class="form-label">Nombre Atributo</label>
+              <input (keyup.enter)="createAtribute()" id="nombreAtributo" [(ngModel)]="nombreAtributo" type="text" class="form-control">
 
             </div>  
             <div class="mb-3">
@@ -19,7 +19,7 @@
               </div> 
               <div class="mb-3">
                 <label  for="descripcion" class="form-label">Descripción del atributo:</label>
-                <textarea  id="descripcion" [(ngModel)]="descripcion" placeholder="caracteristicas del atributo" class="form-control"></textarea>
+                <textarea (keyup.enter)="createAtribute()" id="descripcion" [(ngModel)]="descripcion" placeholder="caracteristicas del atributo" class="form-control"></textarea>
   
               </div>
          

@@ -7,17 +7,17 @@
      
             <div class="mb-3">
               <label  for="email" class="form-label">Dirección Email</label>
-              <input  id="email" [(ngModel)]="email" type="email" class="form-control">
+              <input (keyup.enter)="register()" id="email" [(ngModel)]="email" placeholder="example@example.com" type="email" class="form-control">
               <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
             </div>   
             <div class="mb-3">
                 <label  for="nombre" class="form-label">Usuario</label>
-                <input  id="nombre" [(ngModel)]="nombre" type="text" class="form-control">
+                <input (keyup.enter)="register()" id="nombre" [(ngModel)]="nombre" placeholder="el nombre de usuario debe contener al menos 5 caracteres y 25 como maximo" type="text" class="form-control">
               
               </div>   
             <div class="mb-3">
                 <label  for="password" class="form-label">Contraseña</label>
-                <input  id="password" [(ngModel)]="password" type="password" class="form-control">
+                <input (keyup.enter)="register()" id="password" [(ngModel)]="password" type="password" placeholder="la contraseña debe tener mayusuculas, numeros y ocupar 8 caracteres minimo" class="form-control">
 
             </div>   
           

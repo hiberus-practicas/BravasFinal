@@ -13,20 +13,33 @@ export class LoginComponent implements OnInit {
     return this._api.logueado;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    sessionStorage.removeItem("id")
+  }
 
   constructor(public _api: ApiService, private router: Router) { }
 
   email: string;
   password: string;
+  loginError:string="";
 
   login() {
 
     this._api.login(this.email, this.password)
       .subscribe(
-        () => console.log('estoy logueado'),
+        () => console.log(sessionStorage.getItem("id")),
         (error) => console.error(error));
 
+        this.checkLogin()
+        this.loginError=""
+  }
+  checkLogin(){
+    if(sessionStorage.getItem("id")===null){
+      this.loginError="Email o contraseña no valido"
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }

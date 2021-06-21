@@ -2,12 +2,12 @@
 <div class="container" *ngIf="this._api.logueado">
     <div class="mb-3">
         <label  for="nombreAtributo" class="form-label">Nombre Proyecto</label>
-        <input  id="nombreAtributo" [(ngModel)]="nombreProyecto" type="text" class="form-control">
+        <input (keyup.enter)="createProject()" id="nombreAtributo" [(ngModel)]="nombreProyecto" type="text" class="form-control">
 
       </div>  
       <div class="mb-3">
         <label  for="nombreAtributo" class="form-label">Nombre Equipo</label>
-        <input  id="nombreAtributo" [(ngModel)]="nombreEquipo" type="text" class="form-control">
+        <input (keyup.enter)="createProject()" id="nombreAtributo" [(ngModel)]="nombreEquipo" type="text" class="form-control">
 
       </div>  
       <button (click)="vistaAtributos=!vistaAtributos" class="btn btn-primary">atributos</button>

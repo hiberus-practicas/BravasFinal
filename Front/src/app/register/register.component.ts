@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   nombre:string;
   password:string;
   regExpEmail = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
-  regExpNombre = new RegExp('[a-z0-9._%+-]{5,25}$');
+  regExpNombre = new RegExp('^[a-z0-9._%+-]{5,25}$');
   regExpPass = new RegExp('^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$');
   emailError:string="";   
   nombreError:string="";   
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
      return false;
    }
    validatePassword(name:String):Boolean{
-    if(this.regExpEmail.test(this.nombre)){
+    if(this.regExpPass.test(this.password)){
       this.passError="";
       return true};
 

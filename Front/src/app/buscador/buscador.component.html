@@ -35,9 +35,10 @@
                 {{elemento.nombreAtributo}}
               </label>
             </div>
-
-            <input type="date"  [(ngModel)]="value" *ngIf="elemento.tipoDato=='date'">
-
+            <div *ngIf="elemento.tipoDato=='date'">
+              <input type="date">
+              <input type="date" name="" id="">
+            </div>
           </td>
           <td><button (click)="addfilter(elemento.nombreAtributo)" class="btn btn-warning ">añadir filtro</button></td>
         </tr>

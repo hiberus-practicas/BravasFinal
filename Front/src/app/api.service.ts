@@ -168,7 +168,7 @@ export class ApiService implements OnInit {
 
   }
 
-  modifyProject(nombreActual: string, nuevoNombre: string, equipoActual: string, nuevoEquipo: string, id: number) {
+  modifyProject(nuevoNombre: string, nuevoEquipo: string, id: number) {
     return this._http.put(this.api_url + 'proyectos/' + id, {
       nombre: nuevoNombre,
       equipo: nuevoEquipo,
@@ -179,8 +179,8 @@ export class ApiService implements OnInit {
     })
   }
 
-  deleteProject(nombre: string) {
-    return this._http.delete(this.api_url + 'proyectos/' + nombre).toPromise().then((res) => {
+  deleteProject(id: number) {
+    return this._http.delete(this.api_url + 'proyectos/' + id).toPromise().then((res) => {
       this.postId = res;
     })
     console.log(this.postId)
@@ -216,7 +216,7 @@ export class ApiService implements OnInit {
   }
   mantenerSession(): void {
     if (this.sessionServerstorage()) {
-      // this.logueado = true;
+       this.logueado = true;
     }
   }
 
