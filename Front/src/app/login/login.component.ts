@@ -9,22 +9,24 @@ import { ApiService } from '../api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  ngOnInit(): void {}
-
-  constructor( public _api: ApiService,private router:Router) { }
-
-  email:string;
-  password:string;
-
-  login(){
-    if(this._api.login(this.email, this.password)==true){
-    this._api.logueado=true;
-    this.router.navigate(['']);
-    
+  public get isLogged() {
+    return this._api.logueado;
   }
-   
+
+  ngOnInit(): void { }
+
+  constructor(public _api: ApiService, private router: Router) { }
+
+  email: string;
+  password: string;
+
+  login() {
+
+    this._api.login(this.email, this.password)
+      .subscribe(
+        () => console.log('estoy logueado'),
+        (error) => console.error(error));
+
   }
- 
 
 }

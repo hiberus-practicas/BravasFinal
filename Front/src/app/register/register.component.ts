@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
      return false;
    }
    validatePassword(name:String):Boolean{
-    if(this.regExpNombre.test(this.nombre)){
+    if(this.regExpEmail.test(this.nombre)){
       this.passError="";
       return true};
 

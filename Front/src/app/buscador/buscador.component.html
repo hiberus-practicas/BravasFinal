@@ -9,7 +9,7 @@
     </span>
   </div>
 
-  <button (click)="vistafiltros=!vistafiltros" class="btn btn-primary">filtros</button>
+  <button (click)="vistafiltros=!vistafiltros" class="btn btn-primary margen">filtros</button>
   <div class="card " *ngIf="vistafiltros">
 
     <table class="table table-striped">
@@ -39,11 +39,11 @@
             <input type="date"  [(ngModel)]="value" *ngIf="elemento.tipoDato=='date'">
 
           </td>
-          <td><button (click)="addfilter(elemento.nombreAtributo)" class="btn btn-warning">añadir filtro</button></td>
+          <td><button (click)="addfilter(elemento.nombreAtributo)" class="btn btn-warning ">añadir filtro</button></td>
         </tr>
       </tbody>
 
-      <button (click)="lista.busquedafiltrada()" class="btn btn-primary">buscar por filtros</button>
+      <button (click)="lista.busquedafiltrada()" class="btn btn-primary margen">buscar por filtros</button>
     </table>
 
 
