@@ -14,9 +14,11 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesusuarioComponent } from './detallesusuario/detallesusuario.component';
+import { GeneralComponent } from './general/general.component';
 
 
 const routes: Routes = [
+  {path:"",component:GeneralComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "change-password", component: ChangePasswordComponent},

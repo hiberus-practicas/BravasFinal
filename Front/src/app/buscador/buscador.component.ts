@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router} from '@angular/router';
 import { Atributo } from '../Interfaces/Atributo';
 import { AtributoDTO } from '../Interfaces/dto/AtributoDTO';
+import { FechasDto } from '../Interfaces/dto/FechasDTO';
 
 @Component({
   selector: 'app-buscador',
@@ -21,9 +22,12 @@ export class BuscadorComponent implements OnInit {
   textoBusqueda:string="";
   filtros:AtributoDTO[]=[];
   vistafiltros:boolean=false;
+  vistafechas:boolean=false;
   atributotem:Atributo=null;
   listar:Atributo[];
   value:any;
+  fecha1:any;
+  fecha2:any;
 
   listAtributes():void{
     this._api.listAtributes().subscribe(objeto=>this.listar=objeto);
@@ -34,6 +38,8 @@ export class BuscadorComponent implements OnInit {
     this.filtros.push(pushear);
     console.log(this.filtros);
   }
+
+
  
 
 

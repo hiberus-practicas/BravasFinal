@@ -110,4 +110,21 @@ public class AtributoService {
         }
 
     }
+
+    public Atributo borrarAtributo(String nombre) throws Exception {
+        try {
+            Atributo clave = this.repository.getById(nombre);
+
+            for (Atributo_Proyecto atributo : this.repositoryRelaciones.findAll()) {
+                if (atributo.getMykey().getAtributo().getNombreAtributo().equals(nombre) ) {
+                    this.repositoryRelaciones.delete(atributo);
+                }
+            }
+            this.repository.deleteById(nombre);
+            return clave;
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

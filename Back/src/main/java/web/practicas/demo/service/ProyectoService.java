@@ -1,11 +1,9 @@
 package web.practicas.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import web.practicas.demo.model.dto.ProyectoAtributoDTO;
 import web.practicas.demo.model.dto.ProyectoDTO;
-import web.practicas.demo.model.entidades.Atributo;
 import web.practicas.demo.model.entidades.Atributo_Proyecto;
 import web.practicas.demo.model.entidades.Key;
 import web.practicas.demo.model.entidades.Proyecto;
@@ -13,14 +11,9 @@ import web.practicas.demo.repository.IAtributoProyectoRepository;
 import web.practicas.demo.repository.IAtributoRepository;
 import web.practicas.demo.repository.IProyectoRepository;
 import web.practicas.demo.repository.base.BaseRepository;
-import web.practicas.demo.service.auxiliar.AuxService;
 import web.practicas.demo.service.base.BaseServiceImplementation;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 @Service
 public class ProyectoService extends BaseServiceImplementation<Proyecto, Long> {
@@ -35,16 +28,32 @@ public class ProyectoService extends BaseServiceImplementation<Proyecto, Long> {
         super(repository);
     }
 
+    public Proyecto borrarproyecto(Long id) throws Exception {
+        try {
+            Proyecto clave = this.repositorio.getById(id);
+
+            for (Atributo_Proyecto atributo : this.repositorioRelaciones.findAll()) {
+                if (atributo.getMykey().getProyecto().getId() == id) {
+                    this.repositorioRelaciones.delete(atributo);
+                }
+            }
+            this.repositorio.deleteById(id);
+            return clave;
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 
     public ProyectoDTO addAtributoProyecto(ProyectoAtributoDTO valor) throws Exception {
-        try{
+        try {
 
-            Atributo_Proyecto nuevo=new Atributo_Proyecto();
+            Atributo_Proyecto nuevo = new Atributo_Proyecto();
             System.out.println(valor.getNombre());
             System.out.println(repositorioatributo.getById(valor.getNombre()).getTipoDato());
-            String tipodato=repositorioatributo.getById(valor.getNombre()).getTipoDato().toLowerCase();
+            String tipodato = repositorioatributo.getById(valor.getNombre()).getTipoDato().toLowerCase();
             System.out.println(tipodato);
-            switch (tipodato){
+            switch (tipodato) {
                 case "string":
                     nuevo.setValueString(valor.getValor());
                     break;
@@ -63,34 +72,25 @@ public class ProyectoService extends BaseServiceImplementation<Proyecto, Long> {
 
             }
 
-            Proyecto proyecto=repositorio.getById(valor.getIdProyecto());
+            Proyecto proyecto = repositorio.getById(valor.getIdProyecto());
 
-            Key clave=new Key();
+            Key clave = new Key();
             clave.setProyecto(proyecto);
             clave.setAtributo(repositorioatributo.getById(valor.getNombre()));
 
 
-
-
-
-           nuevo.setMykey(clave);
-
-
-
+            nuevo.setMykey(clave);
 
 
             repositorioRelaciones.save(nuevo);
 
 
-
-
-            ProyectoDTO export =new ProyectoDTO(proyecto.getId(), proyecto.getNombre(), proyecto.getEquipo());
-
+            ProyectoDTO export = new ProyectoDTO(proyecto.getId(), proyecto.getNombre(), proyecto.getEquipo());
 
 
             return export;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -30,8 +31,11 @@ export class LoginComponent implements OnInit {
         () => console.log(sessionStorage.getItem("id")),
         (error) => console.error(error));
 
-        this.checkLogin()
+        if(this.checkLogin()){
         this.loginError=""
+     }
+        this.router.navigate([''])
+  
   }
   checkLogin(){
     if(sessionStorage.getItem("id")===null){

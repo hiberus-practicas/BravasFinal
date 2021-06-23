@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { Proyecto } from '../Interfaces/Proyecto';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-project',
@@ -33,8 +34,28 @@ export class ProjectComponent implements OnInit {
     console.log(this.projectAtributes)
   }
  deleteProject(){
-    this._api.deleteProject(this.id)
-    this.router.navigate(['list-projects/todos'])
+
+  Swal.fire({
+    title: '¿Seguro que quiere borrar el proyecto?',
+    text: "No podrá deshacer este paso",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Borrar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this._api.deleteProject(this.id).subscribe(elemento=>elemento);
+      this.router.navigate([''])
+      Swal.fire(
+        'Borrado',
+        'El proyecto ha sido borrado',
+        'success'
+      )
+    }
+  })
+  
+
   }
   navToModify(){
     this.router.navigate(['/modify-project/'+this.id])

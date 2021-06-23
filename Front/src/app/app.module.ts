@@ -21,6 +21,7 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { ProjectComponent } from './project/project.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesusuarioComponent } from './detallesusuario/detallesusuario.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DetallesusuarioComponent } from './detallesusuario/detallesusuario.comp
     ProjectComponent,
     BuscadorComponent,
     DetallesusuarioComponent,
+    FooterComponent,
 
   ],
   imports: [

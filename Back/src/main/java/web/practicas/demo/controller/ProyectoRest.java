@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import web.practicas.demo.controller.base.BaseControllerImplementation;
 import web.practicas.demo.model.dto.ProyectoAddDTO;
 import web.practicas.demo.model.dto.ProyectoAtributoDTO;
-import web.practicas.demo.model.dto.ProyectoDTO;
-import web.practicas.demo.model.entidades.Atributo;
 import web.practicas.demo.model.entidades.Proyecto;
 import web.practicas.demo.service.ProyectoService;
-import web.practicas.demo.service.RelacionesService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,6 +21,15 @@ public class ProyectoRest extends BaseControllerImplementation<Proyecto, Proyect
     public ProyectoRest(ProyectoService service) {
         super(service);
         this.service = service;
+    }
+    @DeleteMapping("/borrarproyecto/{id}")
+    public ResponseEntity<?> borrarProyecto(@PathVariable long id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.borrarproyecto(id));
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error':'peticion incorrecta'}");
+        }
     }
 
     @PostMapping("/completo")

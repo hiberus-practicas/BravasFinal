@@ -17,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Embeddable
 public class Key implements Serializable {
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "nombre_atributo")
     private Atributo atributo;
 

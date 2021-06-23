@@ -8,6 +8,7 @@ import { AtributoDTO } from './Interfaces/dto/AtributoDTO';
 import { ProyectoAddDTO } from './Interfaces/dto/ProyectoAddDTO';
 import { UsuarioDto } from './Interfaces/dto/UsuarioDTO';
 import { map, tap } from 'rxjs/operators';
+import { FechasDto } from './Interfaces/dto/FechasDTO';
 
 
 
@@ -155,7 +156,7 @@ export class ApiService implements OnInit {
     return this._http.delete(this.api_url + 'atributos/' + nombre).toPromise().then((res) => {
       this.postId = res;
     })
-    console.log(this.postId)
+   
   }
 
 
@@ -179,11 +180,9 @@ export class ApiService implements OnInit {
     })
   }
 
-  deleteProject(id: number) {
-    return this._http.delete(this.api_url + 'proyectos/' + id).toPromise().then((res) => {
-      this.postId = res;
-    })
-    console.log(this.postId)
+  deleteProject(id: number):Observable<Proyecto> {
+    return this._http.delete<Proyecto>(this.api_url+ 'proyectos/borrarproyecto/'+ id);
+    
   }
 
   listAtributes(): Observable<Atributo[]> {
@@ -205,6 +204,9 @@ export class ApiService implements OnInit {
 
   busquedafiltrada(atributo: AtributoDTO): Observable<Proyecto[]> {
     return this._http.post<Proyecto[]>(this.api_url + '/atributos/busqueda/', atributo);
+  }
+  busquedafechas(fechas: FechasDto): Observable<Proyecto[]> {
+    return this._http.post<Proyecto[]>(this.api_url + '/atributos/busqueda/fechas/', fechas);
   }
 
 

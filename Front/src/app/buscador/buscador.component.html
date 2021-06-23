@@ -36,8 +36,8 @@
               </label>
             </div>
             <div *ngIf="elemento.tipoDato=='date'">
-              <input type="date">
-              <input type="date" name="" id="">
+              <input [(ngModel)]="value" type="date">
+              
             </div>
           </td>
           <td><button (click)="addfilter(elemento.nombreAtributo)" class="btn btn-warning ">añadir filtro</button></td>
@@ -51,5 +51,41 @@
 
   </div>
 
+  <button (click)="vistafechas=!vistafechas" class="btn btn-primary margen">Busqueda por fechas</button>
+  <div class="card " *ngIf="vistafechas">
 
-  <app-list-projects [textoBusqueda]="textoBusqueda" [filtros]="filtros" #lista></app-list-projects>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Atributo</th>
+    
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let elemento of listar">
+          <div *ngIf="elemento.tipoDato=='date'">
+          <th scope="row">{{elemento.nombreAtributo}}</th>
+          <td>
+    
+
+            <div *ngIf="elemento.tipoDato=='date'">
+              <input [(ngModel)]="fecha1" type="date">
+              <input [(ngModel)]="fecha2" type="date">
+              
+            </div>
+          </td>
+          <td><button (click)="lista.buscarporfechas(elemento.nombreAtributo)" class="btn btn-warning ">Buscar</button></td>
+        </div>
+        </tr>
+      </tbody>
+
+     
+    </table>
+
+
+
+  </div>
+
+
+  <app-list-projects  [fecha1]="fecha1" [fecha2]="fecha2"[textoBusqueda]="textoBusqueda" [filtros]="filtros" #lista></app-list-projects>

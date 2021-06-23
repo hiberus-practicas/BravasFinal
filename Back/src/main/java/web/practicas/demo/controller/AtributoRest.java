@@ -59,13 +59,13 @@ public class AtributoRest {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{nombre}")
 
-    public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
+    public ResponseEntity<?> borrarAtributo(@PathVariable String nombre){
         try {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(id));
+            return ResponseEntity.status(HttpStatus.OK).body(service.borrarAtributo(nombre));
 
-        } catch (Exception e) {
+        }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'error':'peticion incorrecta'}");
         }
     }
@@ -85,7 +85,7 @@ public class AtributoRest {
 
     }
 
-    @GetMapping("/busqueda/fechas/")
+    @PostMapping("/busqueda/fechas/")
     public ResponseEntity<?> busquedaacotadafechas(@RequestBody FechasDTO limites) throws Exception {
         try {
 
